@@ -25,6 +25,6 @@
 **Requirements:**
 - Python 3.x
 
-** Contributing:**
+**Contributing:**
 
 **If you'd like to contribute to this project, feel free to fork the repository and submit a pull request. Your feedback and contributions are highly appreciated.**
