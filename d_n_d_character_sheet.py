@@ -4,7 +4,6 @@ races = ["Dwarf", "Elf", "Orc", "Halfling", "Human", "Dragonborn", "Gnome", "Hal
 classes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]
 backgrounds = ["Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Guild Artisan", "Hermit", "Noble", "Outlander", "Sage", "Sailor", "Soldier", "Urchin"]
 religions = ["Forgotten Realms", "Greyhawk", "Dragonlance", "Eberron", "Ravenloft", "Planescape", "Mystara"]
-
 def choose_option(options, message):
     print("\n".join([f"{i+1}. {option}" for i, option in enumerate(options)]))
     choice = input(message)
@@ -30,10 +29,22 @@ def generate_character():
     character["Name"] = input("Enter your character's name: ")
     character.update(generate_ability_scores())
     return character
+
 def display_character_sheet(character):
     print("\nCharacter Sheet:")
     for key, value in character.items():
         print(f"{key}: {value}")
-print("Welcome to Dungeons and Dragons Character Creation!")
-new_character = generate_character()
-display_character_sheet(new_character)
+def save_character_sheet(character):
+    with open("character_sheet.txt", "w") as file:
+        file.write("Character Sheet:\n")
+        for key, value in character.items():
+            file.write(f"{key}: {value}\n")
+while True:
+    print("Welcome to Dungeons and Dragons Character Creation!")
+    new_character = generate_character()
+    display_character_sheet(new_character)
+    save_character_sheet(new_character)
+    print("Character sheet saved as 'character_sheet.txt'")
+    create_new_character = input("Do you want to create a new character? (yes/no): ").lower()
+    if create_new_character != "yes":
+        break
